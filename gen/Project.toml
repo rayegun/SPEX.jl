@@ -1,0 +1,6 @@
+[deps]
+Clang = "40e3b903-d033-50b4-a0cc-940c62c95e31"
+GMP_jll = "781609d7-10c4-51f6-84f2-b8444358ff6d"
+MPFR_jll = "3a97d323-0669-5f0c-9066-3539efd106a3"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+SuiteSparse_jll = "bea87d4a-7f5b-5778-9afe-8cc45184846c"

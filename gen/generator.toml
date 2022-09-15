@@ -1,0 +1,22 @@
+[general]
+library_name = "libspex"
+library_names = {"SPEX_Util.h" = "libspexutil", "SPEX_Left_LU.h" = "libspexleftlu"}
+
+use_julia_native_enum_type = true
+use_deterministic_symbol = true
+auto_mutability = true
+
+printer_blacklist = [
+    # Clang.jl cannot handle these macro correctly, skip for now.
+    "SuiteSparse_long_id"
+]
+
+[codegen]
+use_ccall_macro = true
+
+[codegen.macro]
+macro_mode = "basic"
+
+functionlike_macro_whitelist = [
+    "SUITESPARSE_VER_CODE"
+]
