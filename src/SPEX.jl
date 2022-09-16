@@ -1,5 +1,5 @@
 module SPEX
-
-# Write your package code here.
-
+module libspex
+    include("../gen/libspex.jl")
+end
 end
