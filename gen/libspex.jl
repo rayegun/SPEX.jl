@@ -1,18 +1,16 @@
 const mp_limb_t = Culong
 
-mutable struct __mpz_struct
+struct __mpz_struct
     _mp_alloc::Cint
     _mp_size::Cint
     _mp_d::Ptr{mp_limb_t}
-    __mpz_struct() = new()
 end
 
 const mpz_t = NTuple{1, __mpz_struct}
 
-mutable struct __mpq_struct
+struct __mpq_struct
     _mp_num::__mpz_struct
     _mp_den::__mpz_struct
-    __mpq_struct() = new()
 end
 
 const mpq_t = NTuple{1, __mpq_struct}
@@ -33,12 +31,11 @@ const mpfr_sign_t = Cint
 
 const mpfr_exp_t = Clong
 
-mutable struct __mpfr_struct
+struct __mpfr_struct
     _mpfr_prec::mpfr_prec_t
     _mpfr_sign::mpfr_sign_t
     _mpfr_exp::mpfr_exp_t
     _mpfr_d::Ptr{mp_limb_t}
-    __mpfr_struct() = new()
 end
 
 const mpfr_t = NTuple{1, __mpfr_struct}
@@ -47,7 +44,7 @@ function SPEX_free(p)
     @ccall libspexutil.SPEX_free(p::Ptr{Cvoid})::Cvoid
 end
 
-mutable struct SuiteSparse_config_struct
+struct SuiteSparse_config_struct
     malloc_func::Ptr{Cvoid}
     calloc_func::Ptr{Cvoid}
     realloc_func::Ptr{Cvoid}
@@ -55,7 +52,6 @@ mutable struct SuiteSparse_config_struct
     printf_func::Ptr{Cvoid}
     hypot_func::Ptr{Cvoid}
     divcomplex_func::Ptr{Cvoid}
-    SuiteSparse_config_struct() = new()
 end
 
 function SuiteSparse_start()
@@ -218,11 +214,10 @@ function SPEX_matrix_copy(C_handle, C_kind, C_type, A, option)
     @ccall libspexutil.SPEX_matrix_copy(C_handle::Ptr{Ptr{SPEX_matrix}}, C_kind::SPEX_kind, C_type::SPEX_type, A::Ptr{SPEX_matrix}, option::Ptr{SPEX_options})::SPEX_info
 end
 
-mutable struct SPEX_LU_analysis
+struct SPEX_LU_analysis
     q::Ptr{Int64}
     lnz::Int64
     unz::Int64
-    SPEX_LU_analysis() = new()
 end
 
 function SPEX_LU_analysis_free(S, option)
@@ -506,8 +501,6 @@ function SPEX_Left_LU_solve(X_handle, b, A, L, U, rhos, S, pinv, option)
 end
 
 const SuiteSparse_long = Clong
-
-const SuiteSparse_long_max = typemax(Clong)
 
 const SuiteSparse_long_idd = "ld"
 

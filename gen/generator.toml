@@ -4,10 +4,19 @@ output_file_path = "./libspex.jl"
 use_julia_native_enum_type = true
 use_deterministic_symbol = true
 auto_mutability = true
-
+auto_mutability_includelist = ["SPEX_matrix"]
+auto_mutability_ignorelist = [
+    "__mpz_struct",
+    "__mpq_struct",
+    "__mpfr_struct",
+    "SuiteSparse_config_struct",
+    "SPEX_LU_analysis"
+]
 printer_blacklist = [
     # Clang.jl cannot handle these macro correctly, skip for now.
-    "SuiteSparse_long_id"
+    "SuiteSparse_long_id",
+    "SuiteSparse_long_max",
+    "SUITESPARSE_VERSION"
 ]
 
 [codegen]
@@ -15,7 +24,3 @@ use_ccall_macro = true
 
 [codegen.macro]
 macro_mode = "basic"
-
-functionlike_macro_whitelist = [
-    "SUITESPARSE_VER_CODE"
-]
